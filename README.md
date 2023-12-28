@@ -25,9 +25,7 @@ Our upcoming e-commerce release will introduce several exciting features, includ
 To install Ganjmo and prepare for the upcoming e-commerce features, follow these steps:
 
 ```bash
-git clone https://github.com/RedowanSajeeb/countdownganjmodotcom-project
+git clone git clone https://github.com/RedowanSajeeb/countdownganjmodotcom-project
 cd ganjmo
 npm install
-
-
-
+Then install
