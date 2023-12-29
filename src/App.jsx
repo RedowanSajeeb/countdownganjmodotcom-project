@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import gft from "./assets/ganjhat.gif";
 import moment from "moment";
+import { LinkPreview } from "@dhaiwat10/react-link-preview";
 
 const App = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -155,6 +156,10 @@ const App = () => {
           </div>
         </div>
       </div>
+      <LinkPreview
+        url="https://www.ganjmo.com/Ganjhat_logo_text_1of.png"
+        width="400px"
+      />
     </div>
   );
 };
