@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import gft from "./assets/ganjhat.gif";
 import moment from "moment";
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
+import { SuperSEO } from "react-super-seo";
 
 const App = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -75,6 +76,19 @@ const App = () => {
 
   return (
     <div className="ms-5 me-5">
+      <SuperSEO
+        description="Ganjmo Ganjmo.com Ganjmo Ganjmo | React Super SEO Ganjmo Moreelganj Gorrelgan Ganjmo Comming Soon GANJMO ganjmo yes"
+        lang="en"
+        openGraph={{
+          ogImage: {
+            ogImage: "https://www.ganjmo.com/Ganjhat_logo_0-01.jpg",
+            ogImageAlt: "Ganjmo",
+            ogImageWidth: 1200,
+            ogImageHeight: 630,
+            ogImageType: "image/jpeg",
+          },
+        }}
+      />
       <img className="mx-auto h-28 rounded-lg pt-2" src={gft} alt="" />
       <h1 className="text-center font-serif  pt-3 text-xl md:text-3xl font-medium text-yellow-50 ">
         {`Coming Soon Ganjmo`}
