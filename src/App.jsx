@@ -47,7 +47,7 @@ const App = () => {
 
   function calculateTimeLeft() {
     const now = moment();
-    const endDate = moment("2024-01-07");
+    const endDate = moment("2024-03-26");
     const duration = moment.duration(endDate.diff(now));
     const days = Math.floor(duration.asDays());
     const hours = duration.hours();
@@ -146,13 +146,13 @@ const App = () => {
             <h1 className="text-2xl ">{github.name}</h1>
             <div>
               <div className="mt-2 mb-2 space-x-3">
-                <a target="blank" className=" text-white" href={github?.blog}>
+                {/* <a target="blank" className=" text-white" href={github?.blog}>
                   Blog🌍
-                </a>
+                </a> */}
                 <a
                   target="blank"
                   className=" text-white"
-                  href={github?.html_url}
+                  // href={github?.html_url}
                 >
                   gitHub Link👨‍💻
                 </a>
