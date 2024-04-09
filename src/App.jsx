@@ -20,25 +20,74 @@ const App = () => {
 
   console.log(photoFile);
 
-  const downloadPoster = () => {
+  const downloadPoster = async () => {
     html2canvas(posterRef.current, { scale: 2 })
-      .then((canvas) => {
+      .then(async (canvas) => {
+        const dataUrl = canvas.toDataURL("image/png");
+
         const link = document.createElement("a");
         link.download = `${
-          enteredName ? enteredName + "ganjmo" : "ganjmo"
+          enteredName
+            ? enteredName + `ganjmo${new Date().toISOString()}`
+            : "ganjmo"
         }.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
-        // Show success message
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title:
-            "আপনার পোস্টারটি ডাউনলোড হয়ে গেছে, এখন গঞ্জমোর নিয়মাবলি অনুযায়ী পরবর্তী কাজ সম্পূর্ণ করুন। ধন্যবাদ",
-          showConfirmButton: false,
-          timer: 4500,
-        });
-        reset();
+
+        // Prepare form data for Cloudinary upload
+        const cloudinaryFormData = new FormData();
+        cloudinaryFormData.append("file", dataUrl);
+        cloudinaryFormData.append(
+          "upload_preset",
+          "GanjmoImgUploadCouldPreset0"
+        );
+        cloudinaryFormData.append("cloud_name", "dytex5ajq");
+        cloudinaryFormData.append("folder", "Eid_Gift_folder24");
+
+        try {
+          // Upload file to Cloudinary
+          const cloudinaryResponse = await fetch(
+            "https://api.cloudinary.com/v1_1/dytex5ajq/image/upload",
+            {
+              method: "POST",
+              body: cloudinaryFormData,
+            }
+          );
+          const cloudinaryData = await cloudinaryResponse.json();
+
+          if (cloudinaryData.url) {
+            // If upload successful, send data to server
+            const serverResponse = await fetch(
+              "https://eidwishes.ganjmo.com/eid-gift24",
+
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  imageUrl: cloudinaryData.url,
+                  imageName: enteredName,
+                  uploaded_Time: new Date().toISOString(),
+                }),
+              }
+            );
+
+            if (serverResponse.ok) {
+              // Show success message
+              Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title:
+                  "আপনার পোস্টারটি ডাউনলোড হয়ে গেছে, এখন গঞ্জমোর নিয়মাবলি অনুযায়ী পরবর্তী কাজ সম্পূর্ণ করুন। ধন্যবাদ",
+                showConfirmButton: false,
+                timer: 4500,
+              });
+            }
+          }
+        } catch (error) {
+          console.error("Error uploading image to Cloudinary:", error);
+        }
       })
       .catch((err) => {
         console.error("Error downloading the poster:", err);
@@ -46,7 +95,7 @@ const App = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "ছবিটি ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম , সাফারি অথবা মজিলা ফায়ারফক্স ব্যবহার করুন!",
+          text: "ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম , সাফারি অথবা মজিলা ফায়ারফক্স ব্যবহার করুন",
         });
         reset();
       });
@@ -125,7 +174,7 @@ const App = () => {
                     <img
                       src={photoPreviewUrl}
                       alt="Preview"
-                      className="absolute h-[115px] md:h-[115px]   border-4 border-white -mt-[315px] md:-mt-[320px] rounded-full"
+                      className="absolute h-[115px] md:h-[115px] w-[115px]    border-4 border-white -mt-[315px] md:-mt-[320px] rounded-full"
                     />
                   )}
                 </div>
@@ -142,6 +191,10 @@ const App = () => {
               >
                 পোস্টার ডাউনলোড করুন
               </button>
+              <p className="text-gray-600 text-xs">
+                ছবিটি ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম , সাফারি অথবা মজিলা
+                ফায়ারফক্স ব্যবহার করুন
+              </p>
             </div>
           </div>
         </div>
