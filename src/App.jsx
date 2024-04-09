@@ -86,16 +86,23 @@ const App = () => {
             }
           }
         } catch (error) {
-          console.error("Error uploading image to Cloudinary:", error);
+          console.error("Error:", error);
+          // Show error message
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "ছবিটি ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম, সাফারি অথবা মজিলা ফায়ারফক্স ব্যবহার করুন",
+          });
+          reset();
         }
       })
       .catch((err) => {
-        console.error("Error downloading the poster:", err);
+        console.error("Error:", err);
         // Show error message
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম , সাফারি অথবা মজিলা ফায়ারফক্স ব্যবহার করুন",
+          text: "ছবিটি ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম, সাফারি অথবা মজিলা ফায়ারফক্স ব্যবহার করুন । অথবা Google এ গিয়ে সার্চ করুন eid.ganjmo.com",
         });
         reset();
       });
@@ -174,7 +181,7 @@ const App = () => {
                     <img
                       src={photoPreviewUrl}
                       alt="Preview"
-                      className="absolute h-[115px] md:h-[115px] w-[115px]    border-4 border-white -mt-[315px] md:-mt-[320px] rounded-full"
+                      className="absolute h-[110px] md:h-[110px] w-[110px]    border-4 border-white -mt-[315px] md:-mt-[320px] rounded-full"
                     />
                   )}
                 </div>
@@ -191,9 +198,10 @@ const App = () => {
               >
                 পোস্টার ডাউনলোড করুন
               </button>
-              <p className="text-gray-600 text-xs">
-                ছবিটি ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম , সাফারি অথবা মজিলা
-                ফায়ারফক্স ব্যবহার করুন
+              <p className="text-gray-500 text-sm border p-2 rounded-2xl">
+                ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম , সাফারি অথবা মজিলা
+                ফায়ারফক্স ব্যবহার করুন । অথবা Google এ গিয়ে সার্চ করুন
+                <span className="font-semibold"> eid.ganjmo.com</span>
               </p>
             </div>
           </div>
