@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import posterImg from "./assets/media/bannarframeganjmo-01.jpg";
+import posterImg from "./assets/media/doneframe-01.jpg";
 import logoGanjmo from "./assets/media/ganjmo_web_logo-01.png";
 import { useForm } from "react-hook-form";
 import html2canvas from "html2canvas";
@@ -171,7 +171,7 @@ const App = () => {
         <div className="p-2 relative">
           <div className="card mx-auto md:w-96 bg-base-100 shadow-xl">
             <div className="card-body">
-              <p className="text-center text-[#f56b0c]">
+              <p className="text-center text-[#221308]">
                 নিম্নলিখিত নকশা সহ পোস্টার
               </p>
               <div ref={posterRef} className="relative w-[268px] h-[268px]">
@@ -192,12 +192,26 @@ const App = () => {
                   </p>
                 )}
               </div>
-              <button
-                onClick={downloadPoster}
-                className="btn btn-outline w-52 mx-auto text-white bg-[#f56b0c]"
-              >
-                পোস্টার ডাউনলোড করুন
-              </button>
+              {enteredName && photoPreviewUrl ? (
+                <>
+                  {" "}
+                  <button
+                    onClick={downloadPoster}
+                    className="btn btn-outline w-52 mx-auto text-white bg-[#f56b0c]"
+                  >
+                    পোস্টার ডাউনলোড করুন
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p className="text-gray-900 bg-white  text-sm border p-2 rounded">
+                    আপনার ছবি এবং নাম দিলে অটোমেটিক পোস্টার জেনারেট হয়ে ডাউনলোড
+                    অপশন আসবে। চাইলে আপনি শেয়ার করতে পারেন আপনার গ্যালারিতে থাকা
+                    স্বরণীয় ছবি
+                  </p>
+                </>
+              )}
+
               <p className="text-gray-500 text-sm border p-2 rounded-2xl">
                 ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম , সাফারি অথবা মজিলা
                 ফায়ারফক্স ব্যবহার করুন । অথবা Google এ গিয়ে সার্চ করুন
@@ -207,13 +221,94 @@ const App = () => {
           </div>
         </div>
 
-        <div className="mx-auto  pt-1 ps-5 mb-5 pe-5 m w-full">
-          <button
-            onClick={downloadPoster}
-            className="btn w-full bg-[#fcfbfa] text-[#f56b0c] btn-outline"
+        <div className="p-5">
+          <div
+            tabIndex={0}
+            className="collapse  collapse-arrow border border-base-300 bg-base-200"
           >
-            ক্যাম্পেইন সম্পর্কে বিস্তারিত
-          </button>
+            <div className="collapse-title text-xl font-medium p-3 mb-5">
+              ক্যাম্পেইন সম্পর্কে বিস্তারিত
+            </div>
+            <div className="collapse-content space-y-2 ">
+              <p className="text-xs space-y-3 text-gray-500 tex">{`
+পোস্ট করতে পারেন আপনার গ্যালারিতে থাকা স্বরণীয় ছবি। জিতে নিতে পারেন সিলেকশন বোর্ড কতৃক বিজয়ী  ৩ জন ইদ সালামি। 
+
+গঞ্জমোর সাথে যুক্ত কোনো কর্মকর্তা, কর্মচারী এ সিলেকশন এর অন্তর্ভুক্ত নয়।`}</p>
+              <p className="text-xs space-y-3 text-gray-500 tex">{`
+পোস্ট করতে পারেন আপনার গ্যালারিতে থাকা স্বরণীয় ছবি। জিতে নিতে পারেন সিলেকশন বোর্ড কতৃক বিজয়ী  ৩ জন ইদ সালামি। 
+
+গঞ্জমোর সাথে যুক্ত কোনো কর্মকর্তা, কর্মচারী এ সিলেকশন এর অন্তর্ভুক্ত নয়।`}</p>
+              <p>
+                <span className="pointer">&#10148;</span> আপনার নাম এবং ছবি
+                দিয়ে তৈরি করুন: আকর্ষণীয় পোস্টার। চাইলে আপনি শেয়ার করতে পারেন
+                আপনার গ্যালারিতে থাকা স্বরণীয় ছবি
+                <br />
+                <span className="pointer">&#10148;</span> আপনার টাইমলাইনে পোস্ট
+                করুন: পোস্টারটি, ক্যাপশনে লিখুন: আপনি কি গঞ্জমোর পাশে আছেন?
+                পরবর্তী বছরগুলোতে গঞ্জমোকে কোন জায়গায় দেখতে চান? (আপনার নিজস্ব
+                আঙ্গিকে লিখুন) অবশ্যই গঞ্জমোর পেজ মেনশন করুন। পোস্টের ক্যাপশনে
+                ব্যবহার করুন: #ganjmoeid24 হ্যাশট্যাগ।
+              </p>
+              <p>
+                <span className="pointer">&#10148;</span> গঞ্জমোর অফিসিয়াল
+                পেইজের ক্যাম্পেইন পোস্টের কমেন্ট বক্সে আপনার পরিচিত মোরেলগঞ্জের
+                ৫ জনকে ম্যানশোন করুন।
+              </p>
+              <div>
+                <p>
+                  পোস্টের স্ক্রীনশট ফেসবুকে সার্চ বক্সে সার্চ করুন Ganjmo Online
+                  Shopping তাহলে পেজ পাবেন
+                </p>
+                <img
+                  src="https://scontent.xx.fbcdn.net/v/t1.15752-9/434062073_248285705032115_2502951056969592860_n.png?stp=dst-png_s206x206&_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG7P8PDTMpFAc0o6zAALxcUoJYjgbGVUz6gliOBsZVTPidZDowgNPAbcHUmXxqx_ZP1cfRGa-wrs1Jo9zrmM1JW&_nc_ohc=GJ2NXcEDaAIAb6XXS5G&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdXxO8FKFxSCaCl2cSfDyp_XW-UFRu8_16EjXBKOTeREvA&oe=663CE28C"
+                  alt=""
+                />
+              </div>
+
+              <p>
+                <span className="pointer">&#10148;</span> পুরস্কার:
+                <ul>
+                  <li>প্রথম পুরস্কার: ৫০০ টাকা + গঞ্জমো টি-শার্ট</li>
+                  <li>দ্বিতীয় পুরস্কার: ৩০০ টাকা</li>
+                  <li>তৃতীয় পুরস্কার: ২০০ টাকা</li>
+                </ul>
+              </p>
+              <p>
+                <span className="pointer">&#10148;</span> ক্যাম্পেইন সময়কাল:
+                <ul>
+                  <li>ফলাফল ঘোষণা:</li>
+                  <li>ঈদের দিন সন্ধার পরে বিজয়ীদের নাম ঘোষণা করা হবে।</li>
+                  <li>
+                    বিজয়ীদের পুরস্কার মোবাইল ব্যাংকিং-এর মাধ্যমে দিয়ে দেওয়া
+                    হবে।
+                  </li>
+                  <li>
+                    এই ক্যাম্পেইনে অংশগ্রহণের জন্য, অংশগ্রহণকারীদের অবশ্যই
+                    মোরেলগঞ্জে গঞ্জভূমি হতে হবে অথবা মোরেলগঞ্জে বেড়ে উঠছে এরকম।
+                  </li>
+                </ul>
+              </p>
+              <p>
+                <span className="pointer">&#10148;</span> বিজয়ী নির্ধারণ:
+                <ul>
+                  <li>
+                    যে পোস্টে সর্বাধিক মন্তব্য থাকবে, সেই পোস্টের গঞ্জমোর
+                    শুভাকাঙ্ক্ষী বিজয়ী।
+                  </li>
+                  <li>একজন ব্যক্তির একাধিক মন্তব্য কাউন্ট করা হবে না।</li>
+                </ul>
+              </p>
+              <span className="text-xs">
+                {` বিশেষ সতর্কতা : আপনার ফেসবুক প্রোফাইল লগ করা থাকলে, বিজয়ী ঘোষণার
+                আগ পযন্ত খুলে রাখার অনুরোধ করছি। "রেজাল্ট বোর্ড" আপনার
+                পোস্ট কাউন্ট করতে সমস্যায় পড়তে পারে।`}
+              </span>
+              <p>
+                <span className="pointer">&#10148;</span> আমরা আশা করি এই
+                ক্যাম্পেইনটি আপনাদের ঈদের আনন্দকে আরও বর্ধিত করবে।
+              </p>
+            </div>
+          </div>
         </div>
 
         <footer>
