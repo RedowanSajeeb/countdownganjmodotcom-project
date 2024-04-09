@@ -3,13 +3,12 @@ import posterImg from "./assets/media/bannarframeganjmo-01.jpg";
 import logoGanjmo from "./assets/media/ganjmo_web_logo-01.png";
 import { useForm } from "react-hook-form";
 import html2canvas from "html2canvas";
+import Swal from "sweetalert2";
 
 const App = () => {
   const {
     register,
-    // handleSubmit,
-    // watch,
-    // reset
+    reset, // Destructure reset function
     formState: { errors },
   } = useForm();
 
@@ -28,11 +27,28 @@ const App = () => {
         link.download = `${
           enteredName ? enteredName + "ganjmo" : "ganjmo"
         }.png`;
-        link.href = canvas.toDataURL("image/png"); // Specify image/png format
+        link.href = canvas.toDataURL("image/png");
         link.click();
+        // Show success message
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title:
+            "আপনার পোস্টারটি ডাউনলোড হয়ে গেছে, এখন গঞ্জমোর নিয়মাবলি অনুযায়ী পরবর্তী কাজ সম্পূর্ণ করুন। ধন্যবাদ",
+          showConfirmButton: false,
+          timer: 4500,
+        });
+        reset();
       })
       .catch((err) => {
         console.error("Error downloading the poster:", err);
+        // Show error message
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "ছবিটি ডাউনলোড করতে অনুগ্রহ পূর্বক গুগল ক্রোম , সাফারি অথবা মজিলা ফায়ারফক্স ব্যবহার করুন!",
+        });
+        reset();
       });
   };
 
