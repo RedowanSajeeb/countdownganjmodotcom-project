@@ -25,7 +25,9 @@ const App = () => {
     html2canvas(posterRef.current, { scale: 2 })
       .then((canvas) => {
         const link = document.createElement("a");
-        link.download = "poster.png";
+        link.download = `${
+          enteredName ? enteredName + "ganjmo" : "ganjmo"
+        }.png`;
         link.href = canvas.toDataURL("image/png"); // Specify image/png format
         link.click();
       })
@@ -94,39 +96,40 @@ const App = () => {
             </div>
           </div>
         </form>
-        <div className="p-1">
+        <div className="p-2 relative">
           <div className="card mx-auto md:w-96 bg-base-100 shadow-xl">
             <div className="card-body">
               <p className="text-center text-[#f56b0c]">
                 নিম্নলিখিত নকশা সহ পোস্টার
               </p>
-              <div ref={posterRef} className="relative">
+              <div ref={posterRef} className="relative w-[268px] h-[268px]">
                 <img className="relative" src={posterImg} alt="" />
-                <div>
+                <div className="flex mx-auto w-1/2 items-center">
                   {photoPreviewUrl && (
                     <img
                       src={photoPreviewUrl}
                       alt="Preview"
-                      className="absolute border-2 -mt-[222px] ms-[76px] md:-mt-[255px] h-[110px] md:h-32 rounded-full md:ms-[85px]"
+                      className="absolute h-[115px] md:h-[115px]   border-4 border-white -mt-[315px] md:-mt-[320px] rounded-full"
                     />
                   )}
                 </div>
                 {/* Display the entered name */}
                 {enteredName && (
-                  <p className="absolute banglaNameFont -mt-[60px] md:-mt-16 font-medium text-2xl text-white text-center w-full">
+                  <p className="absolute banglaNameFont -mt-[62px] md:-mt-[60px] font-medium text-2xl text-white text-center w-full">
                     {enteredName}
                   </p>
                 )}
               </div>
               <button
                 onClick={downloadPoster}
-                className="btn btn-outline w-full text-white bg-[#f56b0c]"
+                className="btn btn-outline w-52 mx-auto text-white bg-[#f56b0c]"
               >
                 পোস্টার ডাউনলোড করুন
               </button>
             </div>
           </div>
         </div>
+
         <div className="mx-auto  pt-1 ps-5 mb-5 pe-5 m w-full">
           <button
             onClick={downloadPoster}
