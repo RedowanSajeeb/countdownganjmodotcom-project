@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.2",
     "react-router-dom": "^6.21.1",
     "react-super-seo": "^1.1.3",
     "reactjs-countdown": "^0.0.8",

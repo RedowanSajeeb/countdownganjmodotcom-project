@@ -1,8 +1,18 @@
 import React from "react";
 import posterImg from "./assets/media/ganjmoEidProfile24-01.jpg";
 import logoGanjmo from "./assets/media/ganjmo_web_logo-01.png";
+import { useForm } from "react-hook-form";
 
 const App = () => {
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    // reset
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = () => {};
   return (
     <div>
       <img className="h-14 mx-auto" src={logoGanjmo} alt="" />
@@ -13,27 +23,40 @@ const App = () => {
           </h1>
           <p className="text-center p-2 text-gray-100 text-sm">{`গঞ্জমোর "শুভেচ্ছা সালামি" ক্যাম্পেইনে অংশগ্রহণ করুন এবং আকর্ষণীয় পুরষ্কার জিতুন!`}</p>
         </div>
-        <div className="p-4 md:p-2">
+        {/* form submit  */}
+        <form onSubmit={handleSubmit(onSubmit)} className="p-4 md:p-2">
           <div className="card border-2 border-gray-700 md:w-96 mx-auto bg-base-100 shadow-xl">
             <div className="card-body ">
               <div className="space-y-5">
                 <p className="text-gray-500 text-sm font-semibold">{`"CHOOSE FIFLE" এ ক্লিক করে আপনার ছবি সিলেক্ট করে দিন`}</p>
                 <input
+                  {...register("photo_file", { required: true })}
                   type="file"
                   className="file-input w-full file-input-bordered  max-w-xs"
                 />
+                {errors.photo_file && (
+                  <span className="text-red-600 text-xs font-semibold">
+                    {"আপনার ফটো প্রয়োজন"}
+                  </span>
+                )}
                 <input
+                  {...register("name", { required: true })}
                   type="text"
                   placeholder="এখানে আপনার নাম লিখুন"
                   className="input input-bordered w-full max-w-xs"
                 />
+                {errors.photo_file && (
+                  <span className="text-red-600 text-xs font-semibold">
+                    {"আপনার নাম প্রয়োজন"}
+                  </span>
+                )}
                 <button className="btn btn-outline w-full text-white bg-[#f56b0c]">
                   আপনার পোস্টার তৈরি করুন
                 </button>
               </div>
             </div>
           </div>
-        </div>
+        </form>
 
         <div className="p-4">
           <div className="card  mx-auto md:w-96 bg-base-100 shadow-xl">
