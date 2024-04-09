@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 const App = () => {
   const {
     register,
-    handleSubmit,
+    // handleSubmit,
     // watch,
     // reset
     formState: { errors },
@@ -14,11 +14,9 @@ const App = () => {
 
   const [photoFile, setPhotoFile] = useState(null);
   const [photoPreviewUrl, setPhotoPreviewUrl] = useState("");
-  const [enteredName, setEnteredName] = useState(""); // State to store the entered name
+  const [enteredName, setEnteredName] = useState("");
+  // State to store the entered name
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
   console.log(photoFile);
   return (
     <div>
@@ -31,7 +29,7 @@ const App = () => {
           <p className="text-center p-2 text-gray-100 text-sm">{`গঞ্জমোর "শুভেচ্ছা সালামি" ক্যাম্পেইনে অংশগ্রহণ করুন এবং আকর্ষণীয় পুরষ্কার জিতুন!`}</p>
         </div>
         {/* form submit  */}
-        <form onSubmit={handleSubmit(onSubmit)} className="p-4 md:p-2">
+        <form className="p-4 md:p-2">
           <div className="card border-2 border-gray-700 md:w-96 mx-auto bg-base-100 shadow-xl">
             <div className="card-body">
               <div className="space-y-5">
@@ -67,15 +65,15 @@ const App = () => {
                   type="text"
                   placeholder="এখানে আপনার নাম লিখুন"
                   className="input input-bordered w-full max-w-xs"
+                  onChange={(e) => setEnteredName(e.target.value)}
+                  //
                 />
+
                 {errors.name && (
                   <span className="text-red-600 text-xs font-semibold">
                     {errors.name.message}
                   </span>
                 )}
-                <button className="btn btn-outline w-full text-white bg-[#f56b0c]">
-                  আপনার পোস্টার তৈরি করুন
-                </button>
               </div>
             </div>
           </div>
@@ -84,7 +82,7 @@ const App = () => {
           <div className="card mx-auto md:w-96 bg-base-100 shadow-xl">
             <div className="card-body">
               <p className="text-center text-[#f56b0c]">
-                উদাহরণ: নিম্নলিখিত নকশা সহ পোস্টার
+                নিম্নলিখিত নকশা সহ পোস্টার
               </p>
               <div className="relative">
                 <img className="relative" src={posterImg} alt="" />
@@ -97,11 +95,14 @@ const App = () => {
                 )}
                 {/* Display the entered name */}
                 {enteredName && (
-                  <p className="absolute text-white text-lg font-semibold -mt-[100px] md:-mt-[130px] text-center w-full">
+                  <p className="absolute  text-base text-[#FF8A00] font-semibold -mt-[100px] md:-mt-[120px] text-center w-full">
                     {enteredName}
                   </p>
                 )}
               </div>
+              <button className="btn btn-outline w-full text-white bg-[#f56b0c]">
+                আপনার পোস্টার ডাউনলোড করুন
+              </button>
             </div>
           </div>
         </div>
