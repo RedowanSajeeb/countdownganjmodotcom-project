@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.maateen.me/siyam-rupali/font.css');
+
+.banglaNameFont{
+    font-family: 'SiyamRupali', sans-serif;
+}

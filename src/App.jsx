@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import posterImg from "./assets/media/ganjmoEidProfile24-01.jpg";
+import posterImg from "./assets/media/bannarframeganjmo-01.jpg";
 import logoGanjmo from "./assets/media/ganjmo_web_logo-01.png";
 import { useForm } from "react-hook-form";
 import html2canvas from "html2canvas";
@@ -94,7 +94,7 @@ const App = () => {
             </div>
           </div>
         </form>
-        <div className="p-4">
+        <div className="p-1">
           <div className="card mx-auto md:w-96 bg-base-100 shadow-xl">
             <div className="card-body">
               <p className="text-center text-[#f56b0c]">
@@ -102,16 +102,18 @@ const App = () => {
               </p>
               <div ref={posterRef} className="relative">
                 <img className="relative" src={posterImg} alt="" />
-                {photoPreviewUrl && (
-                  <img
-                    src={photoPreviewUrl}
-                    alt="Preview"
-                    className="absolute border-2 -mt-[222px] ms-[76px] md:-mt-[255px] h-[110px] md:h-32 rounded-full md:ms-[85px]"
-                  />
-                )}
+                <div>
+                  {photoPreviewUrl && (
+                    <img
+                      src={photoPreviewUrl}
+                      alt="Preview"
+                      className="absolute border-2 -mt-[222px] ms-[76px] md:-mt-[255px] h-[110px] md:h-32 rounded-full md:ms-[85px]"
+                    />
+                  )}
+                </div>
                 {/* Display the entered name */}
                 {enteredName && (
-                  <p className="absolute text-sm  text-[#FF8A00] font-semibold -mt-[115px] md:-mt-[125px] text-center w-full">
+                  <p className="absolute banglaNameFont -mt-[60px] md:-mt-16 font-medium text-2xl text-white text-center w-full">
                     {enteredName}
                   </p>
                 )}
