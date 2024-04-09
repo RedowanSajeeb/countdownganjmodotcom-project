@@ -14,10 +14,12 @@ const App = () => {
 
   const [photoFile, setPhotoFile] = useState(null);
   const [photoPreviewUrl, setPhotoPreviewUrl] = useState("");
+  const [enteredName, setEnteredName] = useState(""); // State to store the entered name
 
   const onSubmit = (data) => {
     console.log(data);
   };
+  console.log(photoFile);
   return (
     <div>
       <img className="h-14 mx-auto" src={logoGanjmo} alt="" />
@@ -78,23 +80,28 @@ const App = () => {
             </div>
           </div>
         </form>
-
         <div className="p-4">
-          <div className="card  mx-auto md:w-96 bg-base-100 shadow-xl">
-            <div className="card-body ">
+          <div className="card mx-auto md:w-96 bg-base-100 shadow-xl">
+            <div className="card-body">
               <p className="text-center text-[#f56b0c]">
                 উদাহরণ: নিম্নলিখিত নকশা সহ পোস্টার
               </p>
-              <img className="relative" src={posterImg} alt="" />
-              {photoPreviewUrl && (
-                <di>
+              <div className="relative">
+                <img className="relative" src={posterImg} alt="" />
+                {photoPreviewUrl && (
                   <img
                     src={photoPreviewUrl}
                     alt="Preview"
-                    className="absolute -mt-[232px] ms-[75px]  md:-mt-[265px] h-[110px]  md:h-32 rounded-full md:ms-[85px]"
+                    className="absolute border-2 -mt-[222px] ms-[76px] md:-mt-[255px] h-[110px] md:h-32 rounded-full md:ms-[85px]"
                   />
-                </di>
-              )}
+                )}
+                {/* Display the entered name */}
+                {enteredName && (
+                  <p className="absolute text-white text-lg font-semibold -mt-[100px] md:-mt-[130px] text-center w-full">
+                    {enteredName}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </div>
