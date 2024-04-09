@@ -3,6 +3,8 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     themes: [
+      // Array of theme options provided by Tailwind CSS
+      // You can customize or extend these themes as needed
       "light",
       "dark",
       "cupcake",
@@ -37,6 +39,5 @@ export default {
       "sunset",
     ],
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui")], // Array of Tailwind CSS plugins to include
 };
-

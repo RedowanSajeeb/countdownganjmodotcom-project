@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import posterImg from "./assets/media/ganjmoEidProfile24-01.jpg";
 import logoGanjmo from "./assets/media/ganjmo_web_logo-01.png";
 import { useForm } from "react-hook-form";
+import html2canvas from "html2canvas";
 
 const App = () => {
   const {
@@ -16,8 +17,23 @@ const App = () => {
   const [photoPreviewUrl, setPhotoPreviewUrl] = useState("");
   const [enteredName, setEnteredName] = useState("");
   // State to store the entered name
+  const posterRef = useRef(null);
 
   console.log(photoFile);
+
+  const downloadPoster = () => {
+    html2canvas(posterRef.current, { scale: 2 })
+      .then((canvas) => {
+        const link = document.createElement("a");
+        link.download = "poster.png";
+        link.href = canvas.toDataURL("image/png"); // Specify image/png format
+        link.click();
+      })
+      .catch((err) => {
+        console.error("Error downloading the poster:", err);
+      });
+  };
+
   return (
     <div>
       <img className="h-14 mx-auto" src={logoGanjmo} alt="" />
@@ -84,7 +100,7 @@ const App = () => {
               <p className="text-center text-[#f56b0c]">
                 নিম্নলিখিত নকশা সহ পোস্টার
               </p>
-              <div className="relative">
+              <div ref={posterRef} className="relative">
                 <img className="relative" src={posterImg} alt="" />
                 {photoPreviewUrl && (
                   <img
@@ -95,19 +111,25 @@ const App = () => {
                 )}
                 {/* Display the entered name */}
                 {enteredName && (
-                  <p className="absolute  text-base text-[#FF8A00] font-semibold -mt-[100px] md:-mt-[120px] text-center w-full">
+                  <p className="absolute text-sm  text-[#FF8A00] font-semibold -mt-[115px] md:-mt-[125px] text-center w-full">
                     {enteredName}
                   </p>
                 )}
               </div>
-              <button className="btn btn-outline w-full text-white bg-[#f56b0c]">
-                আপনার পোস্টার ডাউনলোড করুন
+              <button
+                onClick={downloadPoster}
+                className="btn btn-outline w-full text-white bg-[#f56b0c]"
+              >
+                পোস্টার ডাউনলোড করুন
               </button>
             </div>
           </div>
         </div>
         <div className="mx-auto  pt-1 ps-5 mb-5 pe-5 m w-full">
-          <button className="btn w-full bg-[#fcfbfa] text-[#f56b0c] btn-outline">
+          <button
+            onClick={downloadPoster}
+            className="btn w-full bg-[#fcfbfa] text-[#f56b0c] btn-outline"
+          >
             ক্যাম্পেইন সম্পর্কে বিস্তারিত
           </button>
         </div>
