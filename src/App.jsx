@@ -12,13 +12,15 @@ const App = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = () => {};
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <div>
       <img className="h-14 mx-auto" src={logoGanjmo} alt="" />
       <div>
-        <div className="border-2 mb-3 rounded-2xl border-t-0 rounded-t-none">
-          <h1 className="text-center pt-5 text-gray-100  text-xl p-5 pt-0 b md:text-2xl ">
+        <div className="border-2 shadow mb-3 rounded-2xl border-t-0 rounded-t-none">
+          <h1 className="text-center  text-gray-100  text-xl p-5 pt-0 b md:text-2xl ">
             {"গঞ্জমো শুভেচ্ছা সালামি,ঈদে গঞ্জমোর সাথে আনন্দ ভাগ করে নিন!"}
           </h1>
           <p className="text-center p-2 text-gray-100 text-sm">{`গঞ্জমোর "শুভেচ্ছা সালামি" ক্যাম্পেইনে অংশগ্রহণ করুন এবং আকর্ষণীয় পুরষ্কার জিতুন!`}</p>
@@ -26,7 +28,7 @@ const App = () => {
         {/* form submit  */}
         <form onSubmit={handleSubmit(onSubmit)} className="p-4 md:p-2">
           <div className="card border-2 border-gray-700 md:w-96 mx-auto bg-base-100 shadow-xl">
-            <div className="card-body ">
+            <div className="card-body">
               <div className="space-y-5">
                 <p className="text-gray-500 text-sm font-semibold">{`"CHOOSE FIFLE" এ ক্লিক করে আপনার ছবি সিলেক্ট করে দিন`}</p>
                 <input
